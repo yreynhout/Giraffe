@@ -8,7 +8,7 @@
     <NeutralLanguage>en-GB</NeutralLanguage>
 
     <!-- Build settings -->
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -47,11 +47,20 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0'">
     <PackageReference Include="FSharp.Core" Version="6.0.0" />
-    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.*" />
     <PackageReference Include="System.Text.Json" Version="7.0.*" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0'">
+    <PackageReference Include="FSharp.Core" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.*" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="FSharp.Core" Version="8.0.*" />
+    <PackageReference Include="System.Text.Json" Version="8.0.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.*" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.*" PrivateAssets="All" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.*" />
